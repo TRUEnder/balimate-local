@@ -62,9 +62,11 @@
                         <!-- Right Content -->
                         <h4>How would you rate your experience?</h4>
 
-                        <form action="../review/<%= placeid %>" method="POST">
+                        <div class="error-message"></div>
+
+                        <form action="../review/<%= placeid %>" method="POST" id="form">
                             <div style="margin-left: -330px;" class="rating">
-                                <input type="radio" id="star5" name="rating" value="5">
+                                <input type="radio" id="star5" name="rating" value="5" checked>
                                 <label for="star5"></label>
                                 <input type="radio" id="star4" name="rating" value="4">
                                 <label for="star4"></label>
@@ -78,15 +80,25 @@
 
                             <div class="form-group mt-4">
                                 <h5 for="review">Write your review</h5>
+                                <p class="fw-light">Optional</p>
                                 <textarea type="text" name="review" id="review" class="form-control"
                                     placeholder="Tell us about your experience ....."></textarea>
                             </div>
 
                             <div class="form-group mt-4">
                                 <h5 for="photo">Add some photos</h5>
-                                <p class="fw-light">Optional</p>
-                                <input type="file" name="photo" id="photo" class="form-control">
+                                <p class="fw-light">Optional (1 photo only)</p>
+                                <div class="d-flex">
+                                    <input type="file" name="photo" id="photo" class="form-control">
+                                    <button id="delete" class="btn btn-danger">Delete</button>
+                                </div>
                             </div>
+
+                            <input type="url" name="photoUrl" id="photo-url" hidden>
+
+                            <div id="status" class="text-success"></div>
+
+                            <button type="submit" class="btn btn-warning rounded mt-3">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -156,6 +168,21 @@
     <script src="js/main.js"></script>
 
     <script>
+        function toggleSelection(option) {
+            const selectedCard = document.getElementById(option);
+            selectedCard.classList.toggle('selected');
+
+            const selectedOptions = Array.from(document.querySelectorAll('.card.selected'))
+                .map(card => card.id);
+
+            document.getElementById('selectedOptions').value = selectedOptions.join(',');
+        }
+    </script>
+
+
+
+    <!-- Get Destination Info -->
+    <script>
         const path = window.location.pathname
         const parts = path.split('/')
         const userid = parts[2]
@@ -183,18 +210,83 @@
             })
     </script>
 
+
+    <!-- Upload Image -->
     <script>
-        function toggleSelection(option) {
-            const selectedCard = document.getElementById(option);
-            selectedCard.classList.toggle('selected');
 
-            const selectedOptions = Array.from(document.querySelectorAll('.card.selected'))
-                .map(card => card.id);
+        const fileInput = document.getElementById('photo');
+        const deleteBtn = document.getElementById('delete');
+        const status = document.getElementById('status');
+        const form = document.getElementById('form')
+        const photoUrl = document.getElementById('photo-url');
+        let file;
 
-            document.getElementById('selectedOptions').value = selectedOptions.join(',');
-        }
+        fileInput.addEventListener('input', () => {
+            file = fileInput.files[0]
+        })
+
+        deleteBtn.addEventListener('click', (event) => {
+            event.preventDefault()
+            fileInput.value = ''
+        })
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault()
+
+            if (fileInput.value === '') {
+                form.submit()
+            }
+            else {
+                // set status to uploading
+                const fileReader = new FileReader();
+
+                fileReader.readAsArrayBuffer(file);
+                status.innerHTML = 'Upload 0%';
+
+
+                const arr = file.name.split('.')
+                const fileExtension = arr[arr.length - 1]
+                const fileName = `${placeid}_${userid}.${fileExtension}`
+
+                fileReader.onload = async (event) => {
+
+                    const content = event.target.result
+                    const CHUNK_SIZE = 10000 // bytes
+                    var totalChunks = content.byteLength / CHUNK_SIZE
+                    totalChunks = Math.ceil(totalChunks)
+
+                    for (let i = 0; i < totalChunks + 1; i++) {
+                        try {
+                            let CHUNK = content.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE)
+
+                            await fetch('/upload?fileName=' + fileName, {
+                                'method': 'POST',
+                                'headers': {
+                                    'content-type': "application/octet-stream",
+                                    'content-length': CHUNK.length,
+                                    'X-Chunk-Index': i,
+                                    'X-Total-Chunks': totalChunks
+                                },
+                                'body': CHUNK
+                            })
+
+                            status.innerHTML = 'Upload ' + String(Math.floor(((i + 1) / totalChunks) * 100)) + '%'
+                        }
+                        catch (err) {
+                            console.log(err)
+                        }
+                    }
+
+                    status.innerHTML = 'File uploaded!'
+                    photoUrl.value = `https://storage.googleapis.com/gambara/Balimate/${fileName}`
+
+                    form.submit()
+                }
+            }
+        });
+
     </script>
-</body>
 
+</body>
 
 </html>

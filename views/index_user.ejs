@@ -44,7 +44,7 @@
                         <a href="#" class="nav-item nav-link">Home</a>
                         <a href="#recommendations" class="nav-item nav-link">Recommendations</a>
                         <a href="/user/<%= userid %>/favorites" class="nav-item nav-link">Favorites</a>
-                        <a href="#contact" class="nav-item nav-link">Contact</a>
+                        <a href="/user/<%= userid %>/reviews" class="nav-item nav-link">Reviews</a>
                         <a class="d-flex align-items-center nav-item nav-link btn btn-warning dropdown-toggle" href="#"
                             style="gap: 1rem" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -567,7 +567,7 @@
                               </h5>
                             </a>
                             <div class="pt-2">
-                              ${description.slice(0, 35) + '...'}
+                              ${description.slice(0, 55) + '...'}
                             </div>
                             <hr>
                             <div class="row">

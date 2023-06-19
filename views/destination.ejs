@@ -144,6 +144,18 @@
     <!-- Description End -->
 
 
+    <!-- Review of Place Start -->
+    <!-- <div class="container" style="margin-top: 8rem">
+        <div class="row d-flex justify-content-center">
+            <div class="col-11">
+                <h4>Reviews</h4>
+            </div>
+            <div id="review-container" class="d-flex mt-5" style="margin-left: 7rem; margin-right: 7rem"></div>
+        </div>
+    </div> -->
+    <!-- Review of Place End -->
+
+
     <!-- More Like This Start -->
     <div class="container" style="margin-top: 9rem">
         <div class="row d-flex justify-content-center" style="gap: 3.5rem">
@@ -385,7 +397,7 @@
             .then(function (resp) {
                 if (resp.code === 'success') {
 
-                    if (resp.data.hasLiked === 1) {
+                    if (resp.data.hasReviewed === 1) {
                         reviewLink.classList.add('disabled-link')
                         reviewButton.classList.add('disabled')
                     }
@@ -395,6 +407,56 @@
                 }
             })
     </script>
+
+
+    <!-- Get Reviews -->
+    <!-- <script>
+        const reviews = document.getElementById('review-container')
+
+        fetch(`https://api-dot-balimate-dev.et.r.appspot.com/destinations/${placeid}/reviews`)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (resp) {
+                if (resp.code == 'success') {
+                    for (const key in resp.data) {
+                        if (Number(key) == 3) {
+                            break;
+                        }
+                        const user_id = resp.data[key].user_id;
+                        const username = resp.data[key].first_name + " " + resp.data[key].last_name;
+                        const rating = resp.data[key].rating;
+                        const review = resp.data[key].review;
+
+                        const placeContainer = document.createElement('div')
+                        placeContainer.className = 'col-4 d-flex justify-content-center'
+                        const template = `
+                                <div class="card" style="width: 24rem; cursor: auto">
+                                    <div class="card-body">
+                                        <h6 class="card-text fw-bold my-2">
+                                            ${username}
+                                        </h6>
+                                        <div class="d-flex gap-1">
+                                            <i class="fas fa-star" style="color: gold"></i>
+                                            <div>${rating}</div>
+                                        </div>
+                                        <div class="pt-2">
+                                            ${review}
+                                        </div>
+                                    </div>
+                                </div>`
+
+                        placeContainer.innerHTML = template
+                        reviews.append(placeContainer)
+                    }
+                } else {
+                    console.log(resp)
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    </script> -->
 
 
     <!-- More Like -->

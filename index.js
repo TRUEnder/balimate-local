@@ -6,6 +6,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const axios = require('axios')
 const cors = require('cors')
+const fs = require('fs')
 
 const app = express()
 app.use(cors())
@@ -51,6 +52,7 @@ const blockForNotAuthenticated = require('./config/blockForNotAuthenticated')
 
 const { setCurrentUser, user } = require('./config/currentUser')
 
+const uploadImg = require('./config/uploadFile')
 
 
 // Routing
@@ -173,6 +175,55 @@ app.get('/user/:id/favorites', blockForNotAuthenticated, (req, res) => {
 
 app.get('/user/:userid/review/:placeid', blockForNotAuthenticated, (req, res) => {
     res.render('review.ejs', { placeid: req.params.placeid })
+})
+
+app.post('/upload', (req, res) => {
+    const chunkIndex = Number(req.header('X-Chunk-Index'))
+    const totalChunks = Number(req.header('X-Total-Chunks'))
+
+    // Append chunk of data on temporary file
+    req.on('data', chunk => {
+        fs.appendFileSync(`./temp/${req.query.fileName}`, chunk);
+    })
+
+    req.on('end', () => {
+        if (chunkIndex === totalChunks - 1) {
+            console.log(req.query.fileName)
+            // Upload image if the chunks is accumulated
+            uploadImg(`./temp/${req.query.fileName}`, req.query.fileName)
+                .then(() => {
+                    // Delete temporary file
+                    try {
+                        fs.unlinkSync(`./temp/${req.query.fileName}`)
+                    } catch (err) {
+                        console.log(err)
+                    }
+                })
+        }
+    })
+
+    res.status(200).send({
+        message: 'success'
+    })
+})
+
+app.post('/user/:userid/review/:placeid', (req, res) => {
+    axios.post(`https://api-dot-balimate-dev.et.r.appspot.com/reviews?userid=${req.params.userid}&placeid=${req.params.placeid}`,
+        {
+            rating: req.body.rating,
+            review: req.body.review,
+            photoUrl: req.body.photoUrl
+        })
+        .then((response) => {
+            res.redirect(`../destination/${req.params.placeid}`)
+        })
+        .catch((err) => {
+            res.render('review.ejs', { placeid: req.params.placeid })
+        })
+})
+
+app.get('/user/:id/reviews', (req, res) => {
+    res.render('user_review.ejs')
 })
 
 app.use((req, res) => {

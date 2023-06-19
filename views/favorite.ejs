@@ -4,6 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Favorites - BALIMATE</title>
+  <link href="https://storage.googleapis.com/gambara/balimate%20logo.png" rel="icon">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -96,9 +100,7 @@
 
           if (resp.data.length !== 0) {
             for (const key in resp.data) {
-              if (Number(key) === 6) {
-                break;
-              }
+
               const thumbnail = resp.data[key].thumbnail_url;
               const placeid = resp.data[key].place_id;
               const placeName = resp.data[key].place_name;
@@ -143,7 +145,7 @@
                                 </h5>
                               </a>
                               <div class="pt-2">
-                                ${description.slice(0, 35) + '...'}
+                                ${description.slice(0, 55) + '...'}
                               </div>
                               <hr>
                               <div class="row">
