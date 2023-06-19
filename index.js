@@ -183,28 +183,32 @@ app.post('/upload', (req, res) => {
 
     // Append chunk of data on temporary file
     req.on('data', chunk => {
-        fs.appendFileSync(`./temp/${req.query.fileName}`, chunk);
+        fs.appendFileSync(`/tmp/${req.query.fileName}`, chunk);
     })
 
     req.on('end', () => {
         if (chunkIndex === totalChunks - 1) {
             console.log(req.query.fileName)
             // Upload image if the chunks is accumulated
-            uploadImg(`./temp/${req.query.fileName}`, req.query.fileName)
-                .then(() => {
-                    // Delete temporary file
-                    try {
-                        fs.unlinkSync(`./temp/${req.query.fileName}`)
-                    } catch (err) {
-                        console.log(err)
-                    }
-                })
+            uploadImg(`/tmp/${req.query.fileName}`, req.query.fileName)
         }
     })
 
     res.status(200).send({
         message: 'success'
     })
+})
+
+app.delete('/clean', (req, res) => {
+    // Delete image
+    try {
+        fs.unlinkSync(`/tmp/${req.query.fileName}`)
+        res.status(200).send({
+            message: 'success'
+        })
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 app.post('/user/:userid/review/:placeid', (req, res) => {

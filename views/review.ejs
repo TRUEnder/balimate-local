@@ -255,7 +255,7 @@
                     var totalChunks = content.byteLength / CHUNK_SIZE
                     totalChunks = Math.ceil(totalChunks)
 
-                    for (let i = 0; i < totalChunks + 1; i++) {
+                    for (let i = 0; i < totalChunks; i++) {
                         try {
                             let CHUNK = content.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE)
 
@@ -275,6 +275,15 @@
                         catch (err) {
                             console.log(err)
                         }
+                    }
+
+                    // Send request once again to clean temp file
+                    try {
+                        await fetch('/clean?fileName=' + fileName, {
+                            'method': 'DELETE'
+                        })
+                    } catch (err) {
+                        console.log(err)
                     }
 
                     status.innerHTML = 'File uploaded!'

@@ -8,8 +8,8 @@ const storage = new Storage({
 const bucketName = 'gambara'
 const bucket = storage.bucket(bucketName)
 
-async function uploadImg(source, fileName) {
-    await bucket.upload(
+function uploadImg(source, fileName) {
+    bucket.upload(
         source,
         {
             destination: `Balimate/${fileName}`,
