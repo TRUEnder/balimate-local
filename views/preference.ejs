@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Preference - BALIMATE</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <link href="https://storage.googleapis.com/gambara/balimate%20logo.png" rel="icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../style/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0 d-none d-lg-block">
+        <a href="/">
+            <h1 class="text-warning mx-5 my-3"><span class="text-dark">BALI</span>MATE</h1>
+        </a>
+
+        <!-- Start Content -->
+        <div class="container">
+            <div class="p-5">
+                <h2 class="mb-4">Tell us your favorite type of destination in Bali</h2>
+
+                <% if (locals.errorMessage !=null) {%>
+                    <div class="error-message py-4" style="color: rgb(255, 124, 124);">
+                        <%= errorMessage %>
+                    </div>
+                    <%} %>
+
+                        <form action="/preference/<%= locals.userid %>" method="POST">
+
+                            <p class="fw-semibold">Category</p>
+                            <div class="row">
+                                <div class="row">
+                                    <!-- Options -->
+                                    <div class="col-md-3">
+                                        <div class="blog-item">
+                                            <div class="card shadow p-3 mb-2" id="Agrotourism"
+                                                onclick="toggleSelection('Agrotourism')">
+                                                <div class="card-body text-center text-center">
+                                                    <img src="../img/agrotourism.png" width="105" class="rounded-50"
+                                                        alt="">
+                                                </div>
+                                                <p class="card-text fw-bold ml-4 mb-2">Agrotourism</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="blog-item">
+                                            <div class="card shadow p-3 mb-2" id="Nature"
+                                                onclick="toggleSelection('Nature')">
+                                                <div class="card-body text-center">
+                                                    <img src="../img/nature.png" width="148" class="rounded-50" alt="">
+                                                </div>
+                                                <p class="card-text fw-bold ml-4 mb-2">Nature</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="blog-item">
+                                            <div class="card shadow p-3 mb-2" id="Shopping"
+                                                onclick="toggleSelection('Shopping')">
+                                                <div class="card-body text-center">
+                                                    <img src="../img/shopping.png" width="82" class="rounded-50" alt="">
+                                                </div>
+                                                <p class="card-text fw-bold ml-4 mb-2">Shopping</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="blog-item">
+                                            <div class="card shadow p-3 mb-2" id="Recreation"
+                                                onclick="toggleSelection('Recreation')">
+                                                <div class="card-body text-center">
+                                                    <img src="../img/recreation.png" width="111" class="rounded-50"
+                                                        alt="">
+                                                </div>
+                                                <p class="card-text fw-bold ml-4 mb-2">Recreation</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mt-3">
+                                        <div class="blog-item">
+                                            <div class="card shadow-lg" id="Culture"
+                                                onclick="toggleSelection('Culture')">
+                                                <div class="card-body text-center">
+                                                    <img src="../img/culture.jpg" width="111" class="rounded-circle"
+                                                        alt="">
+                                                </div>
+                                                <p class="card-text fw-bold ml-4 mb-2">Culture</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-3 mt-3">
+                                        <div class="blog-item">
+                                            <div class="card shadow-lg" id="Biodiversity"
+                                                onclick="toggleSelection('Biodiversity')">
+                                                <div class="card-body text-center">
+                                                    <img src="../img/biodiversity.jpg" width="111"
+                                                        class="rounded-circle" alt="">
+                                                </div>
+                                                <p class="card-text fw-bold ml-4 mb-2">Biodiversity</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mt-3">
+                                        <div class="blog-item">
+                                            <div class="card shadow-lg" id="Beach" onclick="toggleSelection('Beach')">
+                                                <div class="card-body text-center">
+                                                    <img src="../img/beach.png" width="135" class="rounded-50" alt="">
+                                                </div>
+                                                <p class="card-text fw-bold ml-4 mb-2">Beach</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mt-3">
+                                        <div class="blog-item">
+                                            <div class="card shadow-lg" id="Religious"
+                                                onclick="toggleSelection('Religious')">
+                                                <div class="card-body text-center">
+                                                    <img src="../img/religious.jpg" width="116" class="rounded-circle"
+                                                        alt="">
+                                                </div>
+                                                <p class="card-text fw-bold ml-4 mb-2">Religious</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="fw-semibold mt-4">City</p>
+                                    <div class="card shadow p-3 mb-2 mr-4 w-50 ml-2">
+                                        <select class="form-control border-0" name="city" required>
+                                            <option value="">Choose City</option>
+                                            <option value="Badung">Badung</option>
+                                            <option value="Bangli">Bangli</option>
+                                            <option value="Buleleng">Buleleng</option>
+                                            <option value="Denpasar">Denpasar</option>
+                                            <option value="Gianyar">Gianyar</option>
+                                            <option value="Karangasem">Karangasem</option>
+                                            <option value="Klungkung">Klungkung</option>
+                                            <option value="Tabanan">Tabanan</option>
+                                        </select>
+                                    </div>
+
+
+                                    <p class="fw-semibold mt-4">Price</p>
+                                    <div class="d-inline-flex">
+
+                                        <div class="card shadow p-3 mb-2 mr-4">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="price"
+                                                    id="inlineRadio1" value="Free">
+                                                <p class="form-check-label" for="inlineRadio1">Free <br> <span
+                                                        class="text-muted">Rp
+                                                        0</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="card shadow p-3 mb-2 mr-4">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="price"
+                                                    id="inlineRadio2" value="Middle" checked>
+                                                <p class="form-check-label" for="inlineRadio2">Middle <br> <span
+                                                        class="text-muted">Rp 5000 - 120.000</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="card shadow p-3 mb-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="price"
+                                                    id="inlineRadio3" value="Expensive">
+                                                <p class="form-check-label" for="inlineRadio3">Expensive <br> <span
+                                                        class="text-muted">Rp 121.000 - 500.000</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="categories" name="categories" required>
+
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-warning shadow p-3 rounded"
+                                        style="width: 200px;"><span class="text-light">Next</span></button>
+                                </div>
+                            </div>
+
+                        </form>
+            </div>
+        </div>
+        <!-- End Content -->
+
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+            <div class="row pt-5">
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <a href="" class="navbar-brand">
+                        <h1 class="text-warning"><span class="text-white">BALI</span>MATE</h1>
+                    </a>
+                    <p>Just tell us where you are going on vacation in Bali, we will provide the best recommendations.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Our Services</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                        <a class="text-white-50 mb-2" href="/#top-destinations"><i
+                                class="fa fa-angle-right mr-2"></i>Top
+                            Destination</a>
+                        <a class="text-white-50 mb-2" href="/#contact"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-5">
+                </div>
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contact Us</h5>
+                    <p><i class="fa fa-map-marker-alt mr-2"></i>Bali, Indonesia</p>
+                    <p><i class="fa fa-envelope mr-2"></i>balimate-support@bangkit.academy</p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
+            style="border-color: rgba(256, 256, 256, .1) !important;">
+            <div class="row">
+                <div class="col-lg-6 text-center text-md-right">
+                    <p class="m-0 text-white-50">BALIMATE 2023
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-warning btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="../lib/easing/easing.min.js"></script>
+        <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="../lib/tempusdominus/js/moment.min.js"></script>
+        <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+    </div>
+    </div>
+    </div>
+
+    <script>
+        function toggleSelection(option) {
+            const selectedCard = document.getElementById(option);
+            selectedCard.classList.toggle('selected');
+
+            const categories = Array.from(document.querySelectorAll('.card.selected'))
+                .map(card => card.id);
+
+            document.getElementById('categories').value = categories.join(',');
+        }
+    </script>
+</body>
+
+
+</html>

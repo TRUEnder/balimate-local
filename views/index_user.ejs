@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>BALIMATE - Bali Soulmate</title>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="https://storage.googleapis.com/gambara/balimate%20logo.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../style/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="m-0 text-warning"><span class="text-dark">BALI</span>MATE</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="d-flex align-items-center navbar-nav ml-auto py-0">
+                        <a href="#" class="nav-item nav-link">Home</a>
+                        <a href="#recommendations" class="nav-item nav-link">Recommendations</a>
+                        <a href="/user/<%= userid %>/favorites" class="nav-item nav-link">Favorites</a>
+                        <a href="#contact" class="nav-item nav-link">Contact</a>
+                        <a class="d-flex align-items-center nav-item nav-link btn btn-warning dropdown-toggle" href="#"
+                            style="gap: 1rem" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <svg width="25" height="28" viewBox="0 0 25 28" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="6" cy="5.48571" rx="6" ry="5.48571" transform="matrix(-1 0 0 1 18.5 2)"
+                                    stroke="white" stroke-width="3" />
+                                <path
+                                    d="M2 21.4862C2 20.0885 2.89895 18.8493 4.22765 18.4154V18.4154C9.6029 16.6602 15.3971 16.6602 20.7724 18.4154V18.4154C22.1011 18.8493 23 20.0885 23 21.4862V23.7217C23 24.9292 21.9382 25.8613 20.741 25.7049L15.9968 25.0852C13.6755 24.7821 11.3245 24.782 9.00317 25.0852L4.25903 25.7049C3.06177 25.8613 2 24.9292 2 23.7217V21.4862Z"
+                                    stroke="white" stroke-width="3" />
+                            </svg>
+                            <div class="username"></div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                            <form action="https://api-dot-balimate-dev.et.r.appspot.com/users/9xvKVmpwQ61AWM4lqn6yY"
+                                class="px-4 py-3">
+                                <p class="text-center"><b>Profile</b></p>
+                                <div class="row">
+                                    <div class="d-flex justify-content-end align-items-end"
+                                        style="width: 6rem; height: 6rem">
+                                        <!-- <a onclick="uploadProfilePhoto()" class="position-relative"
+                                            style="margin-right: -1.5rem; margin-bottom: -0.25rem; z-index: 1; cursor: pointer">
+                                            <div class="d-flex justify-content-center align-items-center"
+                                                style="background-color: #40a6fa; width: 1.6rem; height: 1.6rem; border-radius: 0.5rem;">
+                                                <i class="fa fa-camera" style="color: white"></i>
+                                            </div>
+                                        </a> -->
+                                        <img id="profile-photo" class="shadow" alt="user"
+                                            style="height: 100%; border-radius: 50%;">
+                                        <!-- <a onclick="deleteProfilePhoto()"
+                                            style="margin-left: -1.5rem; margin-bottom: -0.25rem; cursor: pointer;">
+                                            <div class="d-flex justify-content-center align-items-center"
+                                                style="background-color: #fa4040; width: 1.6rem; height: 1.6rem; border-radius: 0.5rem;">
+                                                <i class="far fa-trash-alt" style="color: white"></i>
+                                            </div>
+                                        </a> -->
+                                    </div>
+                                    <div class="username d-flex align-items-center px-3"></div>
+                                </div>
+
+                                <div class="input-group mb-3 mt-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">First</span>
+                                    </div>
+                                    <input type="text" id="first-name" name="firstName" class="form-control"
+                                        placeholder="Name" aria-label="Firstname" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Last</span>
+                                    </div>
+                                    <input type="text" id="last-name" name="lastName" class="form-control"
+                                        placeholder="Name" aria-label="Lastname" aria-describedby="basic-addon1">
+                                </div>
+                                <input type="text" id="profile-url" name="profileUrl" hidden>
+                                <button type="submit" class="btn btn-warning d-flex align-items-center"
+                                    style="gap: 1rem">
+                                    <i class="far fa-edit"></i>
+                                    <p class="mb-0">Update</p>
+                                </button>
+                            </form>
+                            <div class="pt-4 pl-4">
+                                <form action="/logout?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn text-danger font-weight-medium">Log
+                                        Out</button>
+                                </form>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0">
+        <div id="header-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="../img/BG - home (1).jpg" alt="Image" style="height: 706px">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3 d-flex justify-content-center"
+                                style="gap: 1rem">
+                                <p>HELLO</p>
+                                <p class="username"></p>
+                            </h4>
+                            <h1 class="display-3 text-white mb-md-4">Where Do You Want To Go?</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="../img/BG - home (2).jpg" alt="Image" style="height: 706px">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3 d-flex justify-content-center"
+                                style="gap: 1rem">
+                                <p>HELLO</p>
+                                <p class="username"></p>
+                            </h4>
+                            <h1 class="display-3 text-white mb-md-4">Where Do You Want To Go?</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-prev-icon mb-n2"></span>
+                </div>
+            </a>
+            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-next-icon mb-n2"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- Top Destinations Start -->
+    <div class="container-fluid py-5" id="top-destinations">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-warning text-uppercase" style="letter-spacing: 5px;">Destinations</h6>
+                <h1>Top Destinations</h1>
+            </div>
+            <div id="top-destinations-container" class="row"></div>
+        </div>
+    </div>
+    <!-- Top Destinations End -->
+
+
+    <!-- Recommendations Start -->
+    <div class="container-fluid" id="recommendations" style="margin-top: 8rem">
+        <div class="row d-flex justify-content-center">
+            <div class="d-flex flex-column col-md-10" style="gap: 3.5rem">
+                <h4 class="w-100">Recommendations for You</h4>
+                <div id="recommendations-container" class="row d-flex justify-content-center"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Recommendations End -->
+
+
+    <!-- Team Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3" id="contact">
+                <h6 class="text-warning text-uppercase" style="letter-spacing: 5px;">Contact</h6>
+                <h1>Our Team</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-9">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-sm-6 pb-3">
+                            <div class="team-item bg-white mb-4">
+                                <div class="team-img position-relative overflow-hidden">
+                                    <img class="img-fluid w-100" src="../img/evlin.jpeg" alt="">
+                                    <div class="team-social">
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-instagram"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="text-center py-4">
+                                    <h5 class="text-truncate">Evlin Sitanggang</h5>
+                                    <p class="m-0">Machine Learning</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 pb-3">
+                            <div class="team-item bg-white mb-4">
+                                <div class="team-img position-relative overflow-hidden">
+                                    <img class="img-fluid w-100" src="../img/hasna.jpeg" alt="">
+                                    <div class="team-social">
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-instagram"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="text-center py-4">
+                                    <h5 class="text-truncate">Nabila Hasna Zhafira</h5>
+                                    <p class="m-0">Machine Learning</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 pb-3">
+                            <div class="team-item bg-white mb-4">
+                                <div class="team-img position-relative overflow-hidden">
+                                    <img class="img-fluid w-100" src="../img/hilma.jpeg" alt="">
+                                    <div class="team-social">
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-instagram"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="text-center py-4">
+                                    <h5 class="text-truncate">Siti Hilmaya Dewantari</h5>
+                                    <p class="m-0">Machine Learning</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 pb-3">
+                            <div class="team-item bg-white mb-4">
+                                <div class="team-img position-relative overflow-hidden">
+                                    <img class="img-fluid w-100" src="../img/hafiz.jpeg" alt="">
+                                    <div class="team-social">
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-instagram"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="text-center py-4">
+                                    <h5 class="text-truncate">Hafizs Fauzi Ritonga</h5>
+                                    <p class="m-0">Cloud Computing</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 pb-3">
+                            <div class="team-item bg-white mb-4">
+                                <div class="team-img position-relative overflow-hidden">
+                                    <img class="img-fluid w-100" src="../img/guntur.jpg" alt="">
+                                    <div class="team-social">
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-instagram"></i></a>
+                                        <a class="btn btn-outline-warning btn-square" href=""><i
+                                                class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="text-center py-4">
+                                    <h5 class="text-truncate">Muhammad Guntur A</h5>
+                                    <p class="m-0">Cloud Computing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-warning"><span class="text-white">BALI</span>MATE</h1>
+                </a>
+                <p>Just tell us where you are going on vacation in Bali, we will provide the best
+                    recommendations.</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Our Services</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                    <a class="text-white-50 mb-2" href="#top-destinations"><i class="fa fa-angle-right mr-2"></i>Top
+                        Destinations</a>
+                    <a class="text-white-50 mb-2" href="#recommendations"><i
+                            class="fa fa-angle-right mr-2"></i>Recommendations</a>
+                    <a class="text-white-50 mb-2" href="/favorites"><i class="fa fa-angle-right mr-2"></i>Favorites</a>
+                    <a class="text-white-50 mb-2" href="#contact"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-5">
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contact Us</h5>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Bali, Indonesia</p>
+                <p><i class="fa fa-envelope mr-2"></i>balimate-support@bangkit.academy</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
+        style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-right">
+                <p class="m-0 text-white-50">BALIMATE 2023
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-warning btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+
+    <!-- Get User info -->
+    <script>
+        const path = window.location.pathname
+        const userid = path.replace('/user/', '')
+
+        fetch(`https://api-dot-balimate-dev.et.r.appspot.com/users/${userid}`)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (resp) {
+                if (resp.code == 'success') {
+                    const usernameContainer = document.getElementsByClassName('username')
+                    usernameContainer[0].innerHTML = `${resp.data.first_name} ${resp.data.last_name}`.slice(0, 7) + '...'
+                    usernameContainer[1].innerHTML = `${resp.data.first_name} ${resp.data.last_name}`
+                    usernameContainer[2].innerHTML = `${resp.data.first_name}`
+                    usernameContainer[3].innerHTML = `${resp.data.first_name}`
+
+                    const profilePhoto = document.getElementById('profile-photo')
+                    const profileUrl = document.getElementById('profile-url')
+                    profilePhoto.src = resp.data.profile_url
+                    profileUrl.value = resp.data.profile_url
+
+                    const firstName = document.getElementById('first-name')
+                    firstName.value = resp.data.first_name
+                    const lastName = document.getElementById('last-name')
+                    lastName.value = resp.data.last_name
+                } else {
+                    console.log(resp)
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+    </script>
+
+
+    <!-- Cloud Storage -->
+    <script src="https://cdn.jsdelivr.net/npm/@google-cloud/storage@6.11.0/build/src/storage.min.js"></script>
+    <script>
+        async function uploadProfilePhoto() {
+            const storage = new Storage({
+                keyFilename: `../service-account-key.json`,
+            })
+
+            const bucketName = 'gambara'
+            const bucket = storage.bucket(bucketName)
+            const imgPath = `./../img/photo_1.png`
+            const destinationPath = `UserProfile/${userid}.png`
+
+            // Sending the upload request
+            await bucket.upload(
+                imgPath,
+                {
+                    destination: destinationPath,
+                },
+                function (err, file) {
+                    if (err) {
+                        console.error(`Error uploading image : ${err}`)
+                    } else {
+                        console.log(`Image uploaded to ${bucketName}.`)
+                    }
+                }
+            )
+
+            const newUrl = `https://storage.googleapis.com/gambara/${destinationPath}`
+            const profilePhoto = document.getElementById('profile-photo')
+            const profileUrl = document.getElementById('profile-url')
+
+            profilePhoto.src = newUrl
+            profileUrl.value = newUrl
+        }
+
+        function deleteProfilePhoto() {
+            const profilePhoto = document.getElementById('profile-photo')
+            const profileUrl = document.getElementById('profile-url')
+
+            profilePhoto.src = 'https://storage.googleapis.com/gambara/UserProfile/profile_placeholder.jpg'
+            profileUrl.value = 'https://storage.googleapis.com/gambara/UserProfile/profile_placeholder.jpg'
+        }
+    </script>
+
+
+    <!-- Top Destinations -->
+    <script>
+        const topDestinations = document.getElementById('top-destinations-container');
+
+        fetch(`https://api-dot-balimate-dev.et.r.appspot.com/destinations?rating=6`)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (resp) {
+                if (resp.code == 'success') {
+                    for (const key in resp.data) {
+
+                        const thumbnail = resp.data[key].thumbnail_url;
+                        const placeid = resp.data[key].place_id;
+                        const placeName = resp.data[key].place_name;
+                        const description = resp.data[key].description;
+                        const weekendPrice = new Intl.NumberFormat('id').format(resp.data[key].weekend_holiday_price);
+                        const weekdayPrice = new Intl.NumberFormat('id').format(resp.data[key].weekday_price);
+                        const city = resp.data[key].city;
+                        const rating = resp.data[key].rating;
+
+                        var price
+                        if (weekdayPrice == 0)
+                            price = 'Free'
+                        else
+                            price = 'Rp. ' + weekdayPrice
+
+                        const placeContainer = document.createElement('div')
+                        placeContainer.className = 'col-lg-4 col-md-6 mb-4'
+                        const template = `
+                <div class="package-item bg-white mb-2">
+                  <div class="d-flex justify-content-center overflow-hidden">
+                    <img src="${thumbnail}" alt="${placeName}" style="height: 14.5rem; width: auto">
+                  </div>
+                  <div class="p-4">
+                    <div class="d-flex justify-content-between mb-3">
+                      <small class="m-0"><i class="fa fa-map-marker-alt text-warning mr-2"></i>${city}</small>
+                    </div>
+                    <a class="h5 text-decoration-none" href="/user/${userid}/destination/${placeid}">${placeName}</a>
+                    <div class="mt-2">${description.slice(0, 55) + '...'}</div>
+                    <div class="border-top mt-4 pt-4">
+                      <div class="d-flex justify-content-between">
+                        <h6 class="m-0"><i class="fa fa-star text-warning mr-2"></i>${rating}
+                        </h6>
+                        <h5 class="m-0">${price}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>`
+
+                        placeContainer.innerHTML = template
+                        topDestinations.append(placeContainer)
+                    }
+                } else {
+                    console.log(resp)
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    </script>
+
+
+    <!-- Recommendations -->
+    <script>
+        const recommendations = document.getElementById('recommendations-container')
+
+        fetch(`https://ml-dot-balimate-dev.et.r.appspot.com/recommend?userid=${userid}`)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (resp) {
+                if (resp.code == 'success') {
+                    for (const key in resp.data) {
+                        if (Number(key) === 6) {
+                            break;
+                        }
+                        const thumbnail = resp.data[key].thumbnail_url;
+                        const placeid = resp.data[key].place_id;
+                        const placeName = resp.data[key].place_name;
+                        const description = resp.data[key].description;
+                        const weekendPrice = new Intl.NumberFormat('id').format(resp.data[key].weekend_holiday_price);
+                        const weekdayPrice = new Intl.NumberFormat('id').format(resp.data[key].weekday_price);
+                        const category = resp.data[key].category;
+                        const city = resp.data[key].city;
+                        const rating = resp.data[key].rating;
+
+                        var price
+                        if (weekdayPrice == 0)
+                            price = 'Free'
+                        else
+                            price = 'Rp. ' + weekdayPrice
+
+                        const placeContainer = document.createElement('div')
+                        placeContainer.className = 'col-4 d-flex justify-content-center'
+                        const template = `
+                    <div class="card" style="width: 24rem; cursor: auto">
+                        <div class="d-flex justify-content-center overflow-hidden">
+                            <img src="${thumbnail}" class="card-img-top" alt="${placeName}" style="height: 14.5rem; width: auto">
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p><i class="fa fa-map-marker-alt"></i> ${city}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="float-end"><svg width="18" height="22" viewBox="0 0 18 22" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M1 11.7166H7C7.26522 11.7166 7.51957 11.5931 7.70711 11.3734C7.89464 11.1537 8 10.8557 8 10.5449V1.17166C8 0.860916 7.89464 0.5629 7.70711 0.343171C7.51957 0.123442 7.26522 0 7 0H1C0.734784 0 0.48043 0.123442 0.292893 0.343171C0.105357 0.5629 0 0.860916 0 1.17166V10.5449C0 10.8557 0.105357 11.1537 0.292893 11.3734C0.48043 11.5931 0.734784 11.7166 1 11.7166ZM0 19.9182C0 20.2289 0.105357 20.527 0.292893 20.7467C0.48043 20.9664 0.734784 21.0899 1 21.0899H7C7.26522 21.0899 7.51957 20.9664 7.70711 20.7467C7.89464 20.527 8 20.2289 8 19.9182V15.2316C8 14.9208 7.89464 14.6228 7.70711 14.4031C7.51957 14.1834 7.26522 14.0599 7 14.0599H1C0.734784 14.0599 0.48043 14.1834 0.292893 14.4031C0.105357 14.6228 0 14.9208 0 15.2316V19.9182ZM10 19.9182C10 20.2289 10.1054 20.527 10.2929 20.7467C10.4804 20.9664 10.7348 21.0899 11 21.0899H17C17.2652 21.0899 17.5196 20.9664 17.7071 20.7467C17.8946 20.527 18 20.2289 18 19.9182V11.7166C18 11.4058 17.8946 11.1078 17.7071 10.8881C17.5196 10.6684 17.2652 10.5449 17 10.5449H11C10.7348 10.5449 10.4804 10.6684 10.2929 10.8881C10.1054 11.1078 10 11.4058 10 11.7166V19.9182ZM11 8.20161H17C17.2652 8.20161 17.5196 8.07817 17.7071 7.85844C17.8946 7.63871 18 7.3407 18 7.02995V1.17166C18 0.860916 17.8946 0.5629 17.7071 0.343171C17.5196 0.123442 17.2652 0 17 0H11C10.7348 0 10.4804 0.123442 10.2929 0.343171C10.1054 0.5629 10 0.860916 10 1.17166V7.02995C10 7.3407 10.1054 7.63871 10.2929 7.85844C10.4804 8.07817 10.7348 8.20161 11 8.20161Z"
+                                                fill="#8A8A8A" />
+                                        </svg>
+                                        ${category}</p>
+                                </div>
+                            </div>
+                            <a href="/user/${userid}/destination/${placeid}">
+                              <h5 class="card-text fw-bold my-2">
+                                  ${placeName}
+                              </h5>
+                            </a>
+                            <div class="pt-2">
+                              ${description.slice(0, 35) + '...'}
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span><i class="fas fa-star" style="color: gold;"></i> ${rating}</span>
+                                </div>
+                                <div class="col-6">
+                                    <p class="float-end">${price}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>`
+
+                        placeContainer.innerHTML = template
+                        recommendations.append(placeContainer)
+                    }
+                } else {
+                    console.log(resp)
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    </script>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../script/main.js"></script>
+</body>
+
+</html>

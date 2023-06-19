@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - BALIMATE</title>
+
+    <link href="https://storage.googleapis.com/gambara/balimate%20logo.png" rel="icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        a {
+            color: rgb(33, 37, 41);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #5a5a5a;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid mb-5">
+            <a href="/">
+                <h1 class="m-4">BALI<span class="text-warning">MATE</span></h1>
+            </a>
+        </div>
+    </header>
+    <main style="margin-top: 100px;">
+        <div class="container mt-5">
+            <div class="row m-5 gap-3">
+                <div class="col-6">
+                    <h1>
+                        Login To Your Account
+                    </h1>
+                    <small>
+                    </small>
+                    <br>
+                    <small>
+                        Enter your data to access your account
+                    </small>
+                    <br>
+                    <% if (messages.error) { %>
+                        <br>
+                        <div class="error-message text-danger">
+                            <%= messages.error %>
+                        </div>
+                        <% } %>
+                            <br>
+                            <form action="/login" method="POST">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="Enter your email">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input name="password" type="password" class="form-control"
+                                            id="exampleInputPassword1" placeholder="Enter your password">
+                                    </div>
+                                </div>
+                                <div class="float-end">
+                                    Haven't created an account?
+                                    <a href="/signup" style="color: #289eff; text-decoration: underline;">Sign Up</a>
+                                </div><br><br><br>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-lg btn-warning text-white fw-bold" type="submit">Log
+                                        In</button>
+                                </div>
+                            </form>
+                </div>
+                <div class="col-5">
+                    <img class="ms-5" src="./img/Logo.png" alt="" style="max-width: 400px;">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+        integrity="sha512-Sq07P2fCp6DwFucZKcEEG/ezz6O+HN0ZKZb6nrFDfVYB6kgVoIuqYudrpAtKgwbUttIzP5PmXx1LJ9HsJKEEgA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
