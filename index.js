@@ -156,8 +156,12 @@ app.get('/user/:id', blockForNotAuthenticated, (req, res) => {
     res.render('index_user.ejs', { userid: req.params.id })
 })
 
-app.get('/search', blockForNotAuthenticated, (req, res) => {
-    res.render('search.ejs')
+app.post('/user/:id/search', (req, res) => {
+    res.redirect(`/user/${req.params.id}/search?q=${req.body.query}`)
+})
+
+app.get('/user/:id/search', blockForNotAuthenticated, (req, res) => {
+    res.render('search.ejs', { userid: req.params.id, query: req.query.q })
 })
 
 app.get('/user/:userid/destination/:placeid', blockForNotAuthenticated,
