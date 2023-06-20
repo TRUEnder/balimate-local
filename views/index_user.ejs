@@ -536,7 +536,7 @@
     <script>
         const recommendations = document.getElementById('recommendations-container')
 
-        fetch(`https://localhost:4000/recommend?userid=${userid}`)
+        fetch(`http://localhost:4000/recommend?userid=${userid}`)
             .then(function (response) {
                 return response.json()
             })

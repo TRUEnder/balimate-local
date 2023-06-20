@@ -463,7 +463,7 @@
     <script>
         const morelike = document.getElementById('more-like')
 
-        fetch(`https://localhost:4000/recommend?userid=${userid}`)
+        fetch(`http://localhost:4000/predict?userid=${userid}`)
             .then(function (response) {
                 return response.json()
             })
