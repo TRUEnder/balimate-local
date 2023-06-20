@@ -536,7 +536,7 @@
     <script>
         const recommendations = document.getElementById('recommendations-container')
 
-        fetch(`https://ml-dot-balimate.et.r.appspot.com/recommend?userid=${userid}`)
+        fetch(`https://localhost:4000/recommend?userid=${userid}`)
             .then(function (response) {
                 return response.json()
             })

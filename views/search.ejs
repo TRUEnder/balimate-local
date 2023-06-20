@@ -106,7 +106,7 @@
 
     searchBar.value = query
 
-    fetch(`https://ml-dot-balimate.et.r.appspot.com/search?q=${query}`)
+    fetch(`http://localhost:4000/search?q=${query}`)
       .then(function (response) {
         return response.json()
       })
